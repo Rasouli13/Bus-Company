@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+<style>
+  .travel-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .seat-selection {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .seat-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .seat-option {
+    position: relative;
+  }
+  
+  .seat-option input[type="radio"] {
+    display: none;
+  }
+  
+  .seat-option label {
+    display: block;
+    padding: 15px;
+    background: #e9ecef;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .seat-option input[type="radio"]:checked + label {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
+  }
+  
+  .seat-option label:hover {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
+  }
+  
+  .no-seats {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+  }
+  
+  .submit-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #218838;
+  }
+  
+  .submit-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+  }
+</style>
+{% endblock extra_headers %}
+
+{% block content %}
+<div class="container">
+  <div class="travel-info">
+    <h2>Buy Ticket</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>From:</strong> {{ travel.departure_city }}</p>
+        <p><strong>To:</strong> {{ travel.arrivals_city }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Date & Time:</strong> {{ travel.date|date:"Y/m/d H:i" }}</p>
+        <p><strong>Price:</strong> {{ travel.price|floatformat:0 }} Toman</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Total Capacity:</strong> {{ travel.capacity }} seats</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Remaining Seats:</strong> {{ travel.remaining_capacity }} seats</p>
+      </div>
+    </div>
+  </div>
+
+  {% if error %}
+    <div class="alert alert-danger">
+      {{ error }}
+    </div>
+  {% elif form %}
+    <div class="seat-selection">
+      <h3>Select Seats</h3>
+      <p class="text-muted">You can select multiple seats for your booking</p>
+      
+      <form method="post">
+        {% csrf_token %}
+        
+        <!-- Hidden travel field -->
+        {{ form.travel }}
+        
+        {% if form.selected_seats.field.choices %}
+          <div class="seat-options">
+            {% for choice in form.selected_seats.field.choices %}
+              <div class="seat-option">
+                <input type="radio"
+                       id="seat_{{ choice.0 }}"
+                       name="{{ form.selected_seats.name }}"
+                       value="{{ choice.0 }}"
+                       {% if choice.0 in form.selected_seats.value %}checked{% endif %}>
+                <label for="seat_{{ choice.0 }}">
+                  Seat {{ choice.0 }}
+                </label>
+              </div>
+            {% endfor %}
+          </div>
+          
+          <div class="text-center">
+            <div class="selected-info mb-3">
+              <span id="selected-count">0</span> seat(s) selected
+            </div>
+            <button type="submit" class="submit-btn" id="buy-btn" disabled>
+              Buy Tickets
+            </button>
+          </div>
+        {% else %}
+          <div class="no-seats">
+            <h4>Sorry, no seats are available</h4>
+            <p>Please select another travel.</p>
+          </div>
+        {% endif %}
+      </form>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+// Add some interactivity
+document.addEventListener('DOMContentLoaded', function() {
+    const seatOptions = document.querySelectorAll('.seat-option input[type="radio"]');
+    const submitBtn = document.querySelector('.submit-btn');
+    
+    // Enable submit button only when a seat is selected
+    function checkSelection() {
+        const selected = document.querySelector('.seat-option input[type="radio"]:checked');
+        if (submitBtn) {
+            submitBtn.disabled = !selected;
+        }
+    }
+    
+    seatOptions.forEach(option => {
+        option.addEventListener('change', checkSelection);
+    });
+    
+    // Initial check
+    checkSelection();
+});
+</script>
+{% endblock %}

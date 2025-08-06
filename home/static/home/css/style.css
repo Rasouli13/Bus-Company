@@ -1,0 +1,299 @@
+/* Home page styles */
+.travels-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #34495e;
+}
+
+.travels-table thead {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+}
+
+.travels-table th {
+    padding: 18px 15px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.travels-table th:last-child {
+    border-right: none;
+}
+
+.travels-table tbody tr {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.travels-table tbody tr:hover {
+    background-color: #f1f3f4;
+    transform: scale(1.01);
+}
+
+.travels-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.travels-table tbody tr:nth-child(even):hover {
+    background-color: #e9ecef;
+}
+
+.travels-table td {
+    padding: 15px 12px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    border-right: 1px solid #dee2e6;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.travels-table td:last-child {
+    border-right: none;
+}
+
+.route-info {
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.route-arrow {
+    color: #3498db;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+.date-info {
+    color: #7f8c8d;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.driver-info {
+    color: #2c3e50;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.vehicle-info {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 13px;
+    text-align: center;
+}
+
+.capacity-info {
+    font-weight: 700;
+    color: #27ae60;
+    font-size: 15px;
+    text-align: center;
+}
+
+.capacity-low {
+    color: #e74c3c;
+}
+
+.price-info {
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.distance-info {
+    color: #7f8c8d;
+    font-size: 13px;
+    text-align: center;
+}
+
+.buy-ticket-btn {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+}
+
+.buy-ticket-btn:hover {
+    background: linear-gradient(135deg, #229954, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary.disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.btn-warning.disabled {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.btn-outline-primary {
+    border: 2px solid #3498db;
+    color: #3498db;
+    background: transparent;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+}
+
+.no-travels-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+.page-title {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.text-muted.small {
+    color: #6c757d;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Ticket cards for "My Tickets" section */
+.ticket-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.ticket-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ticket-card h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.ticket-card p {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.ticket-card p strong {
+    color: #2c3e50;
+}
+
+/* Additional table styling */
+.travels-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.no-travels-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c8d;
+    font-size: 18px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.page-title {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 28px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .travels-table {
+        font-size: 12px;
+    }
+    
+    .travels-table th,
+    .travels-table td {
+        padding: 10px 8px;
+        min-width: 100px;
+    }
+    
+    .buy-ticket-btn,
+    .btn-secondary.disabled,
+    .btn-warning.disabled,
+    .btn-outline-primary {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .route-info {
+        font-size: 12px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .travels-table-container {
+        overflow-x: auto;
+    }
+    
+    .travels-table {
+        min-width: 800px;
+    }
+    
+    .travels-table th,
+    .travels-table td {
+        padding: 8px 6px;
+        min-width: 80px;
+    }
+}

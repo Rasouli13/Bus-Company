@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+    <h3 class="page-title">Available Travels</h3>
+
+    {% if travels %}
+        <div class="travels-table-container">
+            <table class="travels-table">
+            <thead>
+                <tr>
+                    <th>Origin → Destination</th>
+                    <th>Travel Time</th>
+                    <th>Travel Info</th>
+                    <th>Remaining Capacity</th>
+                    <th>Price</th>
+                    <th>Distance</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for travel in travels %}
+                    <tr>
+                        <td class="route-info">
+                            {{ travel.departure_city }}
+                            <span class="route-arrow">→</span>
+                            {{ travel.arrivals_city }}
+                        </td>
+                        <td class="date-info">{{ travel.date|date:"Y-m-d H:i" }}</td>
+                        <td>
+                            <div class="driver-info">{{ travel.driver.user.get_full_name }}</div>
+                            <div class="vehicle-info">{{ travel.driver.vehicle }}</div>
+                        </td>
+                        <td class="capacity-info {% if travel.remaining_capacity <= 2 %}capacity-low{% endif %}">
+                            {{ travel.remaining_capacity }} seat{{ travel.remaining_capacity|pluralize }}
+                        </td>
+                        <td>
+                            {% if travel.price %}
+                                <div class="price-info">{{ travel.price }} Toman</div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="distance-info">{{ travel.get_distance_km }} km</div>
+                        </td>
+                        <td>
+                            {% if user.is_authenticated and user.is_passenger %}
+                                {% if travel.is_available %}
+                                    <a href="{% url 'travel:buy_ticket' travel.id %}"class="buy-ticket-btn"> Buy Ticket </a>
+                                {% elif travel.remaining_capacity <= 0 %}
+                                    <span class="btn-secondary disabled">Sold Out</span>
+                                {% else %}
+                                    <span class="btn-warning disabled">Not Available</span>
+                                {% endif %}
+                            {% elif user.is_authenticated and user.is_driver %}
+                                <span class="text-muted small">Drivers cannot purchase tickets</span>
+                            {% else %}
+                                <a href="{% url 'accounts:passenger_login' %}" class="btn-outline-primary">Login to Buy</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="no-travels-message">
+            <p>No travels found.</p>
+        </div>
+    {% endif %}
+{% endblock content %}
