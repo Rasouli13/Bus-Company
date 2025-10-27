@@ -1,0 +1,159 @@
+/* Ticket cards for "My Tickets" section */
+.tickets-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.page-header p {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.ticket-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.ticket-card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.ticket-header .route-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.ticket-header .route-arrow {
+    color: #3498db;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+.ticket-body .ticket-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ticket-body .detail-item {
+    flex: 1 1 45%;
+    margin-bottom: 12px;
+}
+
+.ticket-body .detail-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.ticket-body .detail-value {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.seat-badge, .price-badge {
+    background: #27ae60;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+.d-flex.justify-content-between.align-items-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.no-tickets {
+    text-align: center;
+    padding: 60px 20px;
+    color: #7f8c8d;
+    font-size: 18px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.no-tickets-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .ticket-body .detail-item {
+        flex: 1 1 100%;
+    }
+    
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    .page-header p {
+        font-size: 14px;
+    }
+    
+    .tickets-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 576px) {
+    .tickets-container {
+        width: 100%;
+    }
+}
