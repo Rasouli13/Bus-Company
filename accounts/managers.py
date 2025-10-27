@@ -23,7 +23,8 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             phone_number=phone_number,
             full_name=full_name,
-            password=password
+            password=password,
+            user_type='admin'
         )
         user.is_admin = True
         user.save(using=self._db)

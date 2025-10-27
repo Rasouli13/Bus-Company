@@ -1,11 +1,18 @@
 from django.contrib import admin
-from .models import Passenger, Driver,User
+from .models import Passenger, Driver,User, AdminUser
 # Register your models here.
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'phone_number', 'full_name', 'user_type', 'is_driver', 'is_passenger', 'is_admin')
+    list_display = ('id', 'phone_number', 'full_name', 'user_type', 'is_driver_icon', 'is_passenger_icon', 'is_admin')
+
+    @admin.display(boolean=True, description='Is Driver')
+    def is_driver_icon(self, obj):
+        return obj.user_type == 'driver'
     
+    @admin.display(boolean=True, description='Is Passenger')
+    def is_passenger_icon(self, obj):
+        return obj.user_type == 'passenger'
 
 @admin.register(Passenger)
 class PassengerAdmin(admin.ModelAdmin):
@@ -34,3 +41,22 @@ class DriverAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(AdminUser)
+class AdminUserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'phone_number', 'full_name', 'is_admin_icon', 'is_driver_icon', 'is_passenger_icon')
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(is_admin=True)
+
+    @admin.display(boolean=True, description='Admin')
+    def is_admin_icon(self, obj):
+        return obj.is_admin
+
+    @admin.display(boolean=True, description='Driver')
+    def is_driver_icon(self, obj):
+        return obj.is_driver
+
+    @admin.display(boolean=True, description='Passenger')
+    def is_passenger_icon(self, obj):
+        return obj.is_passenger

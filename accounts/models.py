@@ -105,3 +105,14 @@ class Driver(models.Model):
 
     def __str__(self):
         return f'Driver: {self.user.full_name}'
+
+
+class AdminUser(User):
+    class Meta:
+        proxy = True
+        verbose_name = 'Admin'
+        verbose_name_plural = 'Admins'
+    
+    def __str__(self):
+        return f'Admin: {self.full_name}'
+        
