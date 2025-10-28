@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block extra_headers %}
+<link rel="stylesheet" href="{% static 'travel/css/create_travel_style.css' %}?">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>        
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {% endblock extra_headers %}
 
 {% block content %}
-  <h2>Create Travel</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Creat</button>
-  </form>
+  <div class="create-travel-container">
+    <h2>Create Travel</h2>
+    <form method="post" class="create-travel-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Create</button>
+    </form>
+  </div>
+
   <script>
-  flatpickr("input[type=datetime-local]", {
-    enableTime: true,
-    dateFormat: "Y-m-d H:i",
-  });
-</script>
+    flatpickr("input[type=datetime-local]", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+  </script>
 {% endblock %}

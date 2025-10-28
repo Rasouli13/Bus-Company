@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" href="{% static 'accounts/css/passenger/login.css' %}">
+{% endblock extra_headers %}
 
 {% block content %}
   <h2>Passenger Login</h2>

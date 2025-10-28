@@ -3,33 +3,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>تعاونی</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    {% comment %} add if to STATIC Files {% endcomment %}
-    {% comment %} <style>
-        .jumbotron{
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #e9ecef;
-        }
-    </style> {% endcomment %}
-    <link rel=stylesheet href="{% static 'css/base_styles.css' %}">
-    {% block extra_headers %}
-        
-    {% endblock extra_headers %}
-        
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Base styles -->
+    <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
+
+    <!-- پیام پاپ‌آپ باید بعد از همه استایل‌ها لود بشه -->
+    <link rel="stylesheet" href="{% static 'css/message_popup.css' %}">
+
+    {% block extra_headers %}{% endblock %}
 </head>
+
 <body>
     {% include 'includes/navbar.html' %}    
-     {% include 'includes/messages.html' %}
+    {% include 'includes/messages.html' %}
+
     <div class="jumbotron">
-        {% block content %}
-            
-        {% endblock content %}
+        {% block content %}{% endblock %}
     </div>
-        
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- JS پیام‌های پاپ‌آپ -->
+    <script src="{% static 'js/message_annimation.js' %}"></script>
 </body>
 </html>

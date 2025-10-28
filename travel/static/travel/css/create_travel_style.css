@@ -1,0 +1,84 @@
+/* Container فرم ایجاد سفر */
+.create-travel-container {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+/* عنوان فرم */
+.create-travel-container h2 {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+/* فرم */
+.create-travel-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+/* فیلدهای فرم */
+.create-travel-form p input,
+.create-travel-form p select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    text-align: left;
+    transition: border-color 0.3s ease;
+}
+
+.create-travel-form p input:focus,
+.create-travel-form p select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* دکمه ارسال */
+.create-travel-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.create-travel-form button[type="submit"]:hover {
+    background: linear-gradient(135deg, #229954, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(39,174,96,0.4);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .create-travel-container {
+        margin: 30px 15px;
+        padding: 20px 25px;
+    }
+
+    .create-travel-form button[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .create-travel-form p input,
+    .create-travel-form p select {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}

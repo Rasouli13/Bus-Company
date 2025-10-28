@@ -4,6 +4,7 @@ from django.http import Http404
 from .forms import BuyTicketForm,CreateTravelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Ticket, Travel
+from .forms import EditTravelForm
 
 # Create your views here.
 
@@ -189,3 +190,50 @@ class CreateTravelView(LoginRequiredMixin,View):
             return redirect('home:home')
         return render(request, self.template_name, {'form':form})
             
+
+class MyTravelsView(LoginRequiredMixin, View):
+    template_name = 'travel/driver_travels.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        # فقط راننده‌ها به این صفحه دسترسی دارن
+        if not request.user.is_driver:
+            raise Http404()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        # گرفتن پروفایل راننده
+        try:
+            driver = request.user.driver_profile
+        except:
+            from accounts.models import Driver
+            driver = Driver.objects.create(user=request.user)
+
+        # گرفتن تمام سفرهای ایجاد شده توسط راننده
+        travels = Travel.objects.filter(driver=driver).select_related(
+            'departure_city', 'arrivals_city', 'driver__vehicle'
+        ).order_by('-date')
+
+        return render(request, self.template_name, {
+            'travels': travels
+        })
+        
+class EditTravelView(LoginRequiredMixin, View):
+    template_name = 'travel/edit_travel.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_driver:
+            raise Http404()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, pk):
+        travel = get_object_or_404(Travel, id=pk, driver=request.user.driver_profile)
+        form = EditTravelForm(instance=travel)
+        return render(request, self.template_name, {'form': form, 'travel': travel})
+
+    def post(self, request, pk):
+        travel = get_object_or_404(Travel, id=pk, driver=request.user.driver_profile)
+        form = EditTravelForm(request.POST, instance=travel)
+        if form.is_valid():
+            form.save()
+            return redirect('travel:driver_travels')
+        return render(request, self.template_name, {'form': form, 'travel': travel})

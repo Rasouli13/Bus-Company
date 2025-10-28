@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+  <link rel="stylesheet" href="{% static 'travel/css/driver_travel_style.css' %}">
+{% endblock extra_headers %}
+
+{% block content %}
+<div class="travels-container">
+  <div class="page-header">
+    <h1>My Travels</h1>
+    <p>Manage your created travels</p>
+  </div>
+
+  {% if travels %}
+    {% for travel in travels %}
+      <div class="travel-card">
+        <div class="travel-header">
+          <div class="route-info">
+            <div class="city-name">{{ travel.departure_city }}</div>
+            <div class="route-arrow">→</div>
+            <div class="city-name">{{ travel.arrivals_city }}</div>
+          </div>
+        </div>
+        
+        <div class="travel-body">
+          <div class="travel-details">
+            <div class="detail-item">
+              <div class="detail-label">Date & Time</div>
+              <div class="detail-value">{{ travel.date|date:"M d, Y H:i" }}</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Price</div>
+              <div class="detail-value">
+                <span class="price-badge">{{ travel.price|floatformat:0 }} Toman</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">Remaining Seats</div>
+              <div class="detail-value">{{ travel.remaining_capacity }} / {{ travel.capacity }}</div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">Vehicle</div>
+              <div class="detail-value">{{ travel.driver.vehicle }}</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <small class="text-muted">Travel ID: #{{ travel.id }}</small>
+            </div>
+            <div>
+              <a href="{% url 'travel:edit_travel' travel.id %}" class="btn-edit">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="no-travels">
+      <div class="no-travels-icon"></div>
+      <h3>No Travels Found</h3>
+      <p>You haven’t created any travels yet.</p>
+      <a href="{% url 'travel:create_travel' %}" class="btn-primary">Create Travel</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

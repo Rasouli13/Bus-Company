@@ -1,0 +1,42 @@
+/* Container */
+#messages-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center; /* پیام‌ها وسط چین زیر هم */
+}
+#messages-container .popup-message {
+    width: auto;
+    max-width: 320px;
+}
+
+/* Base message card */
+.popup-message {
+    min-width: 260px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: all .45s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Message Types */
+.popup-success { background-color: #28a745 !important; }
+.popup-error   { background-color: #dc3545 !important; }
+.popup-warning { background-color: #ffc107 !important; color: #212529 !important; }
+.popup-info    { background-color: #17a2b8 !important; }
+
+/* Show Animation */
+.popup-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}

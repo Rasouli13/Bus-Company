@@ -41,4 +41,14 @@ class CreateTravelForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
-        
+
+class EditTravelForm(forms.ModelForm):
+    class Meta:
+        model = Travel
+        fields = ['departure_city', 'arrivals_city', 'date', 'price']
+        widgets = {
+            'departure_city': forms.Select(attrs={'class': 'form-select'}),
+            'arrivals_city': forms.Select(attrs={'class': 'form-select'}),
+            'date': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter price'}),
+        }

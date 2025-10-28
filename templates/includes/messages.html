@@ -1,9 +1,9 @@
-
 {% if messages %}
-    
+  <div id="messages-container">
     {% for msg in messages %}
-        <p class="alert alert-{{ msg.tags }}">{{ msg }}</p>
+      <div class="popup-message popup-{{ msg.tags }}">
+        {{ msg }}
+      </div>
     {% endfor %}
-        
+  </div>
 {% endif %}
-    

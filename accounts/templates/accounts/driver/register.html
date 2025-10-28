@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" href="{% static 'accounts/css/driver/register.css' %}">
+{% endblock extra_headers %}
 
 {% block content %}
   <h2>Driver Registration</h2>
-  <form method="post">
+  <form method="post" class="driver-register-form">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
