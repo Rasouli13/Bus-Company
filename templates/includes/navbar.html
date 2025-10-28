@@ -17,47 +17,39 @@
       <!-- Right side -->
       <div class="d-flex ms-auto align-items-center">
         {% if request.user.is_authenticated %}
-          <!-- username badge -->
-          <a class="badge bg-light text-dark me-2 text-decoration-none py-2 px-3 rounded-pill">
-            {{ request.user.phone_number }}
-          </a>
+          <span class="user-badge">{{ request.user.phone_number }}</span>
 
           {% if request.user.is_driver %}
-            <a class="btn btn-outline-light me-2" href="{% url 'travel:create_travel' %}">
-              Start Travel
-            </a>
-            <a class="btn btn-outline-light me-2" href="{% url 'travel:driver_travels' %}">
-              My Travels
-            </a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'travel:create_travel' %}">Start Travel</a>
+            <a class="btn btn-outline-primary me-2" href="{% url 'travel:driver_travels' %}">My Travels</a>
           {% endif %}
 
           {% if request.user.is_passenger %}
-            <a class="btn btn-outline-light me-2" href="{% url 'travel:my_tickets' %}">
-              My Tickets
-            </a>
+            <a class="btn btn-outline-success me-2" href="{% url 'travel:my_tickets' %}">My Tickets</a>
           {% endif %}
 
-          <a class="btn btn-outline-light" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="btn btn-outline-danger" href="{% url 'accounts:logout' %}">Logout</a>
 
         {% else %}
-          <!-- Register and Login -->
+          <!-- Passenger -->
           <div class="dropdown me-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-primary dropdown-toggle modern-btn" type="button" data-bs-toggle="dropdown">
               Passenger
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{% url 'accounts:passenger_register' %}">Passenger Register</a></li>
-              <li><a class="dropdown-item" href="{% url 'accounts:passenger_login' %}">Passenger Login</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:passenger_register' %}">Register</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:passenger_login' %}">Login</a></li>
             </ul>
           </div>
 
+          <!-- Driver -->
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle modern-btn" type="button" data-bs-toggle="dropdown">
               Driver
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{% url 'accounts:driver_register' %}">Driver Register</a></li>
-              <li><a class="dropdown-item" href="{% url 'accounts:driver_login' %}">Driver Login</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:driver_register' %}">Register</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:driver_login' %}">Login</a></li>
             </ul>
           </div>
         {% endif %}
