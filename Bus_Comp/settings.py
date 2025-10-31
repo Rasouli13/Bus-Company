@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'travel.apps.TravelConfig',
     'vehicles.apps.VehiclesConfig'
-
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
