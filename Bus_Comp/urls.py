@@ -22,9 +22,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('accounting/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
     path('travel/', include('travel.urls')),
+    
+    path('api/home/', include('home.api_urls')),
+    path('api/accounts/', include('accounts.api_urls')),
+    path('api/travel/', include('travel.api_urls')),
+    path('api/vehicles/', include('vehicles.api_urls')),
 ]
-
-# Serve static files during development
 

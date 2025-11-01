@@ -16,4 +16,3 @@ urlpatterns = passenger_urls + driver_urls + [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     
 ]
-

@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import Driver, Passenger
+
 class CityLocation(models.Model):
     city_name = models.CharField(max_length=100)
     latitude = models.FloatField()

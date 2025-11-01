@@ -35,3 +35,9 @@ Thumbs.db
 node_modules/
 build/
 dist/
+
+
+*.txt
+import os.py
+import_cities.py
+CityLocation.csv
